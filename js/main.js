@@ -18,66 +18,113 @@
   });
 
   // ---------- Contact form ----------
-  // Phase 1: form is purely visual. We block the native submit and show a
-  // local success message. The intended endpoint is read from data-endpoint
-  // (currently "/api/contact") but is NOT called yet.
-  //
-  // Phase 2 (when /api/contact exists): replace the preventDefault-only path
-  // with a fetch() POST. Keep the same data-endpoint source of truth so the
-  // HTML does not need to change.
+  // Envio real a /api/contact. Validacion cliente + servidor.
+  // El servidor siempre vuelve a validar; nunca se confía solo en esto.
   const leadForm = document.getElementById('leadForm');
   if (leadForm) {
     const endpoint = leadForm.dataset.endpoint || '/api/contact';
-    const success = document.getElementById('success');
+    const submitBtn = leadForm.querySelector('button[type="submit"]');
+    const successBox = document.getElementById('success');
     const errorBox = document.getElementById('formError');
+    const emailField = leadForm.querySelector('input[type="email"]');
+    const originalBtnText = submitBtn ? submitBtn.textContent : '';
 
-    const showSuccess = () => {
-      if (success) {
-        success.classList.add('show');
-        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const isEmailFormat = (value) =>
+      typeof value === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+    const setBusy = (busy) => {
+      if (submitBtn) {
+        submitBtn.disabled = busy;
+        submitBtn.setAttribute('aria-busy', busy ? 'true' : 'false');
+        submitBtn.textContent = busy ? 'Enviando…' : originalBtnText;
       }
+    };
+
+    const resetMessages = () => {
+      if (successBox) {
+        successBox.classList.remove('show');
+        successBox.textContent = '✓ Gracias. Recibimos tu información correctamente.';
+      }
+      if (errorBox) {
+        errorBox.classList.remove('show');
+        errorBox.textContent = '';
+      }
+    };
+
+    const clearFieldErrors = () => {
+      leadForm.querySelectorAll('[aria-invalid="true"]').forEach((f) => {
+        f.removeAttribute('aria-invalid');
+      });
     };
 
     const showError = (msg) => {
-      if (errorBox) {
-        errorBox.textContent = msg;
-        errorBox.classList.add('show');
-      }
+      if (!errorBox) return;
+      errorBox.textContent = msg;
+      errorBox.classList.add('show');
+      errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
     };
 
-    leadForm.addEventListener('submit', (event) => {
-      event.preventDefault();
+    const showSuccess = () => {
+      if (!successBox) return;
+      successBox.classList.add('show');
+      successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
 
-      // Minimal client-side validation. Server-side validation MUST also run
-      // in /api/contact once it exists; never trust the client alone.
+    leadForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      resetMessages();
+      clearFieldErrors();
+
+      // Validacion cliente minima.
       const required = leadForm.querySelectorAll('[required]');
       let valid = true;
       required.forEach((field) => {
         if (!field.value || !field.value.trim()) {
           field.setAttribute('aria-invalid', 'true');
           valid = false;
-        } else {
-          field.removeAttribute('aria-invalid');
         }
       });
-      const email = leadForm.querySelector('input[type="email"]');
-      if (email && email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-        email.setAttribute('aria-invalid', 'true');
-        showError('Revisa el formato del correo electrónico.');
+      if (emailField && emailField.value && !isEmailFormat(emailField.value)) {
+        emailField.setAttribute('aria-invalid', 'true');
         valid = false;
       }
       if (!valid) {
-        if (!errorBox) showError('Completa los campos obligatorios.');
+        showError('Completa los campos obligatorios.');
         return;
       }
 
-      // ---- Phase 1: local-only ----
-      // TODO (Phase 2): replace this block with:
-      //   fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' },
-      //     body: JSON.stringify(Object.fromEntries(new FormData(leadForm))) })
-      //     .then(r => r.ok ? showSuccess() : showError('No pudimos enviar tu mensaje. Intenta más tarde.'))
-      //     .catch(() => showError('Sin conexión. Intenta más tarde.'));
-      showSuccess();
+      // Construir payload desde FormData (claves: nombre, empresa, correo, telefono, proceso).
+      const data = {};
+      new FormData(leadForm).forEach((value, key) => {
+        data[key] = typeof value === 'string' ? value : '';
+      });
+
+      setBusy(true);
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        // Intentar parsear JSON; si falla, tratar como error temporal.
+        let payload = null;
+        try { payload = await response.json(); } catch (_e) { /* ignore */ }
+
+        if (response.ok && payload && payload.ok === true) {
+          showSuccess();
+          leadForm.reset();
+          clearFieldErrors();
+        } else if (response.status === 400) {
+          showError('Revisa la información e inténtalo nuevamente.');
+        } else {
+          showError('No pudimos enviar tu solicitud en este momento. Inténtalo nuevamente.');
+        }
+      } catch (_err) {
+        showError('No pudimos enviar tu solicitud en este momento. Inténtalo nuevamente.');
+      } finally {
+        setBusy(false);
+      }
     });
   }
 })();
