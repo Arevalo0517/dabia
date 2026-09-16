@@ -118,11 +118,76 @@ Pendientes a futuro:
 - `prefers-reduced-motion` para usuarios con motion reducido.
 - Validación visual más explícita en inputs.
 
+## Formulario de contacto
+
+Flujo:
+
+```
+Formulario (contact.html)
+  → fetch POST /api/contact  (js/main.js)
+  → Vercel Serverless Function  (api/contact.js)
+  → n8n  (variable N8N_LEAD_WEBHOOK_URL)
+  → n8n crea prospecto en Notion + envia notificacion
+```
+
+El formulario vive en `contact.html` con `id="leadForm"` y los campos:
+
+- `nombre` (requerido, max 100)
+- `empresa` (requerido, max 150)
+- `correo` (requerido, formato email, max 254)
+- `telefono` (opcional, max 40)
+- `proceso` (requerido, max 2000)
+
+El navegador solo valida de forma defensiva; el servidor vuelve a validar todo. Si una validación falla, el cliente muestra `aria-invalid` en los campos afectados y un mensaje global.
+
+### Variables de entorno
+
+| Variable | Descripción | Dónde configurarla |
+|---|---|---|
+| `N8N_LEAD_WEBHOOK_URL` | URL del webhook de n8n que recibe los prospectos | Vercel → Project → Settings → Environment Variables |
+
+Configuración en Vercel:
+
+1. Project → **Settings** → **Environment Variables**
+2. **Key:** `N8N_LEAD_WEBHOOK_URL`
+3. **Value:** la URL real del webhook de n8n (proporcionada por n8n)
+4. Marcar los entornos donde aplique (Production / Preview / Development)
+5. Save → redesplegar si Vercel lo requiere
+
+Sin esta variable, `/api/contact` responde 500 con mensaje genérico y registra `[contact] webhook_not_configured` en logs. **Nunca** incluir el valor real en el repositorio, código visible al navegador, ni README.
+
+### Endpoint `/api/contact`
+
+Vercel detecta automáticamente archivos en `api/` como serverless functions.
+
+- Solo acepta `POST` (otros métodos → `405 Method Not Allowed`).
+- Siempre responde JSON con `Cache-Control: no-store`.
+- Whitelist: solo procesa `nombre`, `empresa`, `correo`, `telefono`, `proceso`. Otros campos del body se ignoran.
+- El payload que recibe n8n incluye además `origen: "sitio_web"` y `fecha_recepcion` (ISO) — estos los agrega el servidor, nunca el cliente.
+- Timeout a n8n: 8 segundos. Si no responde, devuelve error genérico.
+- Sin dependencias externas. Sin frameworks.
+
+Estructura JSON esperada por n8n:
+
+```json
+{
+  "nombre": "...",
+  "empresa": "...",
+  "correo": "...",
+  "telefono": "...",
+  "proceso": "...",
+  "origen": "sitio_web",
+  "fecha_recepcion": "2026-09-16T20:00:00.000Z"
+}
+```
+
 ## Seguridad
 
 - Sin claves, tokens ni secretos en el repositorio.
-- `.gitignore` excluye `.env`, `.env.*`, `.DS_Store`, `node_modules/`.
+- `.gitignore` excluye `.env`, `.env.*`, `.DS_Store`, `node_modules/`, `.vercel/`, artefactos de build.
 - `<meta name="robots" content="noindex, nofollow">` mientras esté en staging.
+- `api/contact.js` no loguea datos personales (solo razones técnicas genéricas).
+- El webhook de n8n nunca aparece en el bundle del navegador.
 
 Pendientes pre-producción:
 - Configurar headers HTTP de seguridad (`X-Content-Type-Options`, `Referrer-Policy`) vía `vercel.json` cuando se agregue backend.
@@ -133,13 +198,16 @@ Pendientes pre-producción:
 El siguiente desarrollo será:
 
 ```
-Formulario → /api/contact → n8n → CRM
+Formulario → /api/contact → n8n → Notion + notificación
 ```
 
-- El formulario (`<form id="leadForm" data-endpoint="/api/contact">`) ya está preparado. El JS lee `data-endpoint` y solo hay que sustituir el bloque local-only por un `fetch()` cuando exista el endpoint.
-- El endpoint `/api/contact` se implementará como función serverless (Vercel Functions) o vía n8n webhook.
-- La salida se enviará al CRM (HubSpot, Zoho, Notion, etc.).
-- Una vez funcionando, eliminar `<meta name="robots" content="noindex, nofollow">` de cada página.
+(esto ya está implementado para `/api/contact` → `n8n`; falta cablear lo que n8n hace después).
+
+Pendientes:
+
+- Definir el workflow en n8n (recibir webhook → crear prospecto en Notion → enviar notificación).
+- Eliminar `<meta name="robots" content="noindex, nofollow">` de cada página cuando esté listo para lanzamiento.
+- (otras fases, no ahora): rate limiting, CAPTCHA/Turnstile, autenticación, Supabase, envío de correo directo, analítica avanzada, tracking publicitario.
 
 ## Pendientes antes de producción
 
