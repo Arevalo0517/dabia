@@ -10,7 +10,6 @@
   <link rel="icon" type="image/png" href="assets/dabia-favicon.png" />
   <!-- TODO: add assets/apple-touch-icon.png -->
   <!-- TODO: set canonical -->
-  <!-- TODO: when /api/contact endpoint exists, update js/main.js to fetch() it -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body id="top">
@@ -37,35 +36,35 @@
       <div class="contact-copy">
         <h2>Muéstranos el proceso que más te frustra.</h2>
         <p>No necesitas llegar con una solución. Cuéntanos qué se repite, qué sistema usas y qué se está perdiendo. Nosotros empezamos por ahí.</p>
-        <p class="tiny">DABIA · AI & Business Automation. Antes de publicar, este formulario se conectará a <code>/api/contact</code>. Por ahora la captura es local.</p>
+        <p class="tiny">DABIA · AI & Business Automation. Te contactaremos para revisar el proceso que quieres mejorar.</p>
       </div>
 
       <form class="form-card" id="leadForm" data-endpoint="/api/contact" novalidate aria-describedby="formNote">
         <div class="form-grid">
           <div class="field">
             <label for="lead-name">Nombre</label>
-            <input id="lead-name" name="name" type="text" required autocomplete="name" placeholder="Tu nombre" />
+            <input id="lead-name" name="nombre" type="text" required autocomplete="name" placeholder="Tu nombre" />
           </div>
           <div class="field">
             <label for="lead-company">Empresa</label>
-            <input id="lead-company" name="company" type="text" required autocomplete="organization" placeholder="Nombre de la empresa" />
+            <input id="lead-company" name="empresa" type="text" required autocomplete="organization" placeholder="Nombre de la empresa" />
           </div>
           <div class="field">
-            <label for="lead-email">Email</label>
-            <input id="lead-email" name="email" type="email" required autocomplete="email" placeholder="tu@empresa.com" />
+            <label for="lead-email">Correo</label>
+            <input id="lead-email" name="correo" type="email" required autocomplete="email" placeholder="tu@empresa.com" />
           </div>
           <div class="field">
             <label for="lead-phone">Teléfono <span class="opt">(opcional)</span></label>
-            <input id="lead-phone" name="phone" type="tel" autocomplete="tel" placeholder="+52 ..." />
+            <input id="lead-phone" name="telefono" type="tel" autocomplete="tel" placeholder="+52 ..." />
           </div>
           <div class="field full">
             <label for="lead-problem">¿Qué proceso te gustaría mejorar?</label>
-            <textarea id="lead-problem" name="problem" required placeholder="Ej. recibimos leads de Facebook y WhatsApp, tardamos en responder y el seguimiento depende del vendedor..."></textarea>
+            <textarea id="lead-problem" name="proceso" required placeholder="Ej. recibimos leads de Facebook y WhatsApp, tardamos en responder y el seguimiento depende del vendedor..."></textarea>
           </div>
           <div class="field full">
             <button class="btn btn-primary btn-full" type="submit">Enviar y solicitar diagnóstico →</button>
-            <p class="form-note" id="formNote"><b>Aviso:</b> el formulario todavía no está conectado a backend. La captura se realiza solo localmente en tu navegador. Cuando <code>/api/contact</code> esté disponible, se enviará automáticamente. Al enviarlo aceptas nuestra <a href="privacy.html" class="inline-link">política de privacidad</a>.</p>
-            <div class="success" id="success">✓ Recibimos tu mensaje. Te contactaremos pronto para agendar el diagnóstico.</div>
+            <p class="form-note" id="formNote">Tu mensaje se envía de forma segura a nuestro sistema. Al enviarlo aceptas nuestra <a href="privacy.html" class="inline-link">política de privacidad</a>.</p>
+            <div class="success" id="success" role="status">✓ Gracias. Recibimos tu información correctamente.</div>
             <div class="form-error" id="formError" role="alert"></div>
           </div>
         </div>
