@@ -173,8 +173,12 @@ section{padding:84px 0}
 /* Contact form (V5) */
 .contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:15px}
 .contact-copy,.form-card{border:1px solid var(--line);border-radius:27px;background:linear-gradient(180deg,#101722,#0b1018);padding:32px}
-.contact-copy h1{font-size:42px;margin-top:0;letter-spacing:-.04em}
+.contact-copy h2{font-size:28px;letter-spacing:-.03em}
 .contact-copy>p{color:#8d99ab;margin:14px 0 22px;font-size:15px}
+.contact-copy .tiny{margin-top:18px}
+.field label .opt{color:#738096;font-weight:500}
+.btn-full{width:100%}
+.lead-extra{margin-top:14px}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
 .field{margin-bottom:0}
 .field.full{grid-column:1/-1}
@@ -223,7 +227,7 @@ section{padding:84px 0}
   .diagnostic-block{padding:36px 24px}
   .sticky{display:block}
   section{padding:68px 0}
-  .contact-copy h1{font-size:32px}
+  .contact-copy h2{font-size:24px}
   .form-grid{grid-template-columns:1fr}
   .field.full{grid-column:auto}
   .footer-grid{display:grid}
