@@ -186,6 +186,9 @@ section{padding:84px 0}
 .form-note b{color:#cbd3df}
 .success{display:none;margin-top:13px;padding:14px;border-radius:12px;border:1px solid rgba(43,217,168,.2);background:rgba(43,217,168,.06);font-size:13px;color:#8ce8cf}
 .success.show{display:block}
+.form-error{display:none;margin-top:13px;padding:12px 14px;border-radius:12px;border:1px solid rgba(248,113,113,.25);background:rgba(248,113,113,.06);font-size:12px;color:#ffb4b8}
+.form-error.show{display:block}
+.field input[aria-invalid="true"],.field textarea[aria-invalid="true"]{border-color:rgba(248,113,113,.55)}
 
 /* Process list (for assessment + how-it-works) */
 .process{display:grid;gap:10px;max-width:680px;margin:24px auto 0}
