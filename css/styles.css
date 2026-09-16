@@ -161,6 +161,10 @@ section{padding:84px 0}
 .footer-grid{display:flex;justify-content:space-between;align-items:center;gap:20px}
 .footer small{color:#647184;font-size:10px}
 .tiny{color:#637084;font-size:10px;margin-top:8px}
+.footer-link{color:#7d8a9d;text-decoration:none;transition:color .2s ease}
+.footer-link:hover{color:#cbbfff;text-decoration:underline}
+.inline-link{color:#cbbfff;text-decoration:underline;text-decoration-color:rgba(124,92,255,.4);text-underline-offset:2px}
+.inline-link:hover{color:#fff;text-decoration-color:rgba(124,92,255,.8)}
 
 /* Sticky mobile CTA */
 .sticky{display:none;position:fixed;z-index:80;bottom:14px;left:14px;right:14px;padding:9px;border:1px solid var(--line2);border-radius:17px;background:rgba(10,14,21,.91);backdrop-filter:blur(17px);box-shadow:var(--shadow)}
@@ -169,8 +173,12 @@ section{padding:84px 0}
 /* Contact form (V5) */
 .contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:15px}
 .contact-copy,.form-card{border:1px solid var(--line);border-radius:27px;background:linear-gradient(180deg,#101722,#0b1018);padding:32px}
-.contact-copy h1{font-size:42px;margin-top:0;letter-spacing:-.04em}
+.contact-copy h2{font-size:28px;letter-spacing:-.03em}
 .contact-copy>p{color:#8d99ab;margin:14px 0 22px;font-size:15px}
+.contact-copy .tiny{margin-top:18px}
+.field label .opt{color:#738096;font-weight:500}
+.btn-full{width:100%}
+.lead-extra{margin-top:14px}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
 .field{margin-bottom:0}
 .field.full{grid-column:1/-1}
@@ -182,6 +190,9 @@ section{padding:84px 0}
 .form-note b{color:#cbd3df}
 .success{display:none;margin-top:13px;padding:14px;border-radius:12px;border:1px solid rgba(43,217,168,.2);background:rgba(43,217,168,.06);font-size:13px;color:#8ce8cf}
 .success.show{display:block}
+.form-error{display:none;margin-top:13px;padding:12px 14px;border-radius:12px;border:1px solid rgba(248,113,113,.25);background:rgba(248,113,113,.06);font-size:12px;color:#ffb4b8}
+.form-error.show{display:block}
+.field input[aria-invalid="true"],.field textarea[aria-invalid="true"]{border-color:rgba(248,113,113,.55)}
 
 /* Process list (for assessment + how-it-works) */
 .process{display:grid;gap:10px;max-width:680px;margin:24px auto 0}
@@ -216,7 +227,7 @@ section{padding:84px 0}
   .diagnostic-block{padding:36px 24px}
   .sticky{display:block}
   section{padding:68px 0}
-  .contact-copy h1{font-size:32px}
+  .contact-copy h2{font-size:24px}
   .form-grid{grid-template-columns:1fr}
   .field.full{grid-column:auto}
   .footer-grid{display:grid}
