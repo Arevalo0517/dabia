@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Home — DABIA</title>
-  <meta name="description" content="English translation coming soon." />
+  <title>DABIA — Process Automation and Applied AI</title>
+  <meta name="description" content="We automate sales, operations and customer service workflows by connecting your systems and using AI only where it adds real value." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="DABIA" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:title" content="DABIA" />
-  <meta property="og:description" content="English translation in progress." />
+  <meta property="og:title" content="DABIA — Process Automation and Applied AI" />
+  <meta property="og:description" content="We automate sales, operations and customer service workflows by connecting your systems and using AI only where it adds real value." />
   <meta property="og:image" content="/assets/dabia-logo.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="DABIA" />
-  <meta name="twitter:description" content="English translation in progress." />
+  <meta name="twitter:title" content="DABIA — Process Automation and Applied AI" />
+  <meta name="twitter:description" content="We automate sales, operations and customer service workflows by connecting your systems and using AI only where it adds real value." />
   <meta name="twitter:image" content="/assets/dabia-logo.png" />
   <meta name="theme-color" content="#070910" />
   <meta name="robots" content="noindex, nofollow" />
@@ -21,42 +21,319 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" />
   <link rel="icon" type="image/png" href="../assets/dabia-favicon.png" />
+  <!-- TODO: add assets/apple-touch-icon.png (180x180) before launch -->
+  <!-- TODO: add assets/og.png (1200x630) and wire og:image + twitter:card before launch -->
+  <!-- TODO: set canonical once domain is finalized -->
   <link rel="stylesheet" href="../css/styles.css" />
   <noscript><style>.reveal{opacity:1!important;transform:none!important;transition:none!important;}</style></noscript>
   <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"DABIA","alternateName":"DABIA — AI & Business Automation","url":"https://dabia.mx/en/","logo":"https://dabia.mx/assets/dabia-logo.png","description":"Process automation and applied AI for businesses in Mexico.","inLanguage":"en","areaServed":"MX","sameAs":[]}
+{"@context":"https://schema.org","@type":"Organization","name":"DABIA","alternateName":"DABIA — AI & Business Automation","url":"https://dabia.mx/en/","logo":"https://dabia.mx/assets/dabia-logo.png","description":"Process automation and applied AI for businesses.","inLanguage":"en","areaServed":"MX","sameAs":[]}
   </script>
 </head>
 <body id="top" data-page="index">
+  <div class="scroll-progress" id="scrollProgress"></div>
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <nav class="nav" aria-label="Main navigation"><div class="container nav-inner">
-    <a class="brand" href="/en/" aria-label="DABIA"><img class="brand-logo" src="../assets/dabia-logo.png" alt="DABIA — AI & Business Automation" width="116" /></a>
+    <a class="brand" href="index.html" aria-label="DABIA"><img class="brand-logo" src="../assets/dabia-logo.png" alt="DABIA — AI & Business Automation" width="116" /></a>
+    <div class="nav-links">
+      <a href="solutions.html">Solutions</a>
+      <a href="how-it-works.html">How it works</a>
+    </div>
     <div class="lang-toggle" role="group" aria-label="Idioma · Language">
       <a href="#" data-lang="en">EN</a>
       <span class="lang-sep">·</span>
       <a href="#" data-lang="es">ES</a>
     </div>
-    <a class="btn btn-primary" href="/es/">View in Spanish</a>
+    <a class="btn btn-primary" href="assessment.html">Request diagnostic</a>
   </div></nav>
 
   <main id="main">
-  <header class="page-hero">
-    <div class="container">
-      <div class="eyebrow reveal"><span class="dot"></span>EN · translation in progress</div>
-      <h1 class="reveal" data-delay="1">This English page is being prepared.</h1>
-      <p class="reveal" data-delay="2">Native review is in motion. For now, please use the Spanish version of the site.</p>
+
+  <!-- 1. HOME -->
+  <header class="hero"><div class="container hero-grid">
+    <div>
+      <div class="eyebrow reveal"><span class="dot"></span>DABIA · AI & Business Automation</div>
+      <h1 class="reveal" data-delay="1">We automate the repetitive work that slows your business.</h1>
+      <p class="hero-copy reveal" data-delay="2">We connect your systems and automate manual tasks so your team recovers time, cuts costs and gains real capacity.</p>
       <div class="hero-actions reveal" data-delay="3">
-        <a class="btn btn-primary" href="/es/">View in Spanish</a>
+        <a class="btn btn-primary" href="assessment.html">See what you can automate</a>
       </div>
     </div>
-  </header>
+  </div></header>
+
+  <!-- 1b. METRIC BAR — KPI strip oriented to the user, no fake numbers -->
+  <section class="metric-bar" aria-label="At-a-glance summary">
+    <div class="metric-cell reveal">
+      <div class="label">Diagnostic</div>
+      <div class="value">30<span style="font-size:.6em;">–45 min</span></div>
+      <div class="meta">Structured conversation</div>
+    </div>
+    <div class="metric-cell reveal" data-delay="1">
+      <div class="label">First delivery</div>
+      <div class="value"><span class="counter" data-target="2">0</span>–<span class="counter" data-target="3">0</span><span style="font-size:.6em;"> weeks</span></div>
+      <div class="meta">Short sprint, with results</div>
+    </div>
+    <div class="metric-cell reveal" data-delay="2">
+      <div class="label">Workstreams</div>
+      <div class="value"><span class="counter" data-target="4">0</span></div>
+      <div class="meta">Sales · Operations · Service · Admin</div>
+    </div>
+    <div class="metric-cell reveal" data-delay="3">
+      <div class="label">Capacity</div>
+      <div class="value">+<span class="counter" data-target="20">0</span>%</div>
+      <div class="meta">Typical range observed in diagnostics</div>
+    </div>
+  </section>
+
+  <!-- 2. WHAT WE AUTOMATE -->
+  <section id="areas"><div class="container">
+    <div class="section-head"><div><div class="kicker">What we automate</div><h2>Three areas where automation delivers immediate results.</h2></div><p>Every business is different. We start by identifying the right process, then choose the right technique: rules, integrations, or AI.</p></div>
+    <div class="areas">
+      <article class="area reveal">
+        <div class="area-icon">↗</div>
+        <h3>Move prospects through the pipeline faster.</h3>
+        <p>We automate replies, follow-ups, scheduling, system updates and the repetitive tasks tied to sales opportunities.</p>
+        <div class="area-tags">
+          <span class="tag">Prospects</span><span class="tag">Follow-up</span><span class="tag">Scheduling</span>
+        </div>
+      </article>
+      <article class="area reveal" data-delay="1">
+        <div class="area-icon">▤</div>
+        <h3>Remove manual work.</h3>
+        <p>We automate data entry, documents, reports, approvals and the movement of information between systems.</p>
+        <div class="area-tags">
+          <span class="tag">Documents</span><span class="tag">Reports</span><span class="tag">Approvals</span>
+        </div>
+      </article>
+      <article class="area reveal" data-delay="2">
+        <div class="area-icon">◎</div>
+        <h3>Handle volume without overwhelming your team.</h3>
+        <p>We automate repetitive requests and route the cases that really need a person to a human.</p>
+        <div class="area-tags">
+          <span class="tag">Requests</span><span class="tag">Escalation</span><span class="tag">Service</span>
+        </div>
+      </article>
+    </div>
+  </div></section>
+
+  <!-- 3. HOW WE TRANSFORM A PROCESS -->
+  <section id="como-transformamos"><div class="container">
+    <div class="section-head"><div><div class="kicker">How we transform a process</div><h2>How DABIA transforms a process.</h2></div><p>A short methodology and a simple example.</p></div>
+
+    <div class="ladder">
+      <article class="ladder-step reveal">
+        <div class="n">01. Analyze</div>
+        <h3>Understand the process.</h3>
+        <p>We observe how the team works today, where time is lost and which tasks consume resources without creating value.</p>
+      </article>
+      <article class="ladder-step reveal" data-delay="1">
+        <div class="n">02. Automate</div>
+        <h3>Decide what to automate.</h3>
+        <p>We connect systems and rules. We only automate what makes sense to automate, leaving room for people to apply judgment.</p>
+      </article>
+      <article class="ladder-step reveal" data-delay="2">
+        <div class="n">03. Measure</div>
+        <h3>Confirm the improvement.</h3>
+        <p>We compare before and after: time recovered, cost reduced, capacity freed. Decisions are made on data, not intuition.</p>
+      </article>
+      <article class="ladder-step reveal" data-delay="3">
+        <div class="n">04. Scale</div>
+        <h3>Carry the same pattern to other processes.</h3>
+        <p>Once validated, we replicate the approach in the next process. No over-engineering, no tool sprawl.</p>
+      </article>
+    </div>
+
+    <div class="before-after">
+      <article class="before-after-card before reveal">
+        <h4>Before</h4>
+        <div class="flow-vertical">
+          <div class="flow-v-step">A request comes in</div>
+          <div class="flow-arrow"></div>
+          <div class="flow-v-step">A person captures the information</div>
+          <div class="flow-arrow"></div>
+          <div class="flow-v-step">A person updates the system</div>
+          <div class="flow-arrow"></div>
+          <div class="flow-v-step">A person sends a follow-up</div>
+          <div class="flow-arrow"></div>
+          <div class="flow-v-step">A person tracks the next step</div>
+          <div class="flow-arrow"></div>
+          <div class="flow-v-step">The person finally handles the case</div>
+        </div>
+        <p>Most of the time is spent managing the process instead of doing the work that actually needs a person.</p>
+      </article>
+      <article class="before-after-card after reveal" data-delay="1">
+        <h4>With DABIA</h4>
+        <div class="flow-vertical">
+          <div class="flow-v-step">A request comes in</div>
+          <div class="flow-arrow"></div>
+          <div class="flow-v-step">Automation records the information</div>
+          <div class="flow-arrow"></div>
+          <div class="flow-v-step">Updates the systems</div>
+          <div class="flow-arrow"></div>
+          <div class="flow-v-step">Sends the follow-up</div>
+          <div class="flow-arrow"></div>
+          <div class="flow-v-step">Detects when human intervention is needed</div>
+          <div class="flow-arrow"></div>
+          <div class="flow-v-step">The person receives the case prepared</div>
+        </div>
+        <p>Automation handles the repetitive tasks and the person steps in where their judgment creates the most value.</p>
+      </article>
+    </div>
+  </div></section>
+
+  <!-- 4. TIME · MONEY · CAPACITY -->
+  <section id="valor"><div class="container">
+    <div class="center"><div class="kicker">Time · Money · Capacity</div><h2>Every manual task has a cost.</h2><p class="lead-extra">A task of a few minutes can turn into dozens of hours every month when it repeats over and over.</p></div>
+
+    <div class="value-grid">
+      <article class="value-card reveal">
+        <div class="kicker">Time</div>
+        <h3>Recover time</h3>
+        <p>Reduce the hours your team spends on repetitive and administrative tasks.</p>
+      </article>
+      <article class="value-card reveal" data-delay="1">
+        <div class="kicker">Money</div>
+        <h3>Cut operating costs</h3>
+        <p>Less manual work can lower the cost of running repetitive processes.</p>
+      </article>
+      <article class="value-card reveal" data-delay="2">
+        <div class="kicker">Capacity</div>
+        <h3>Serve more without adding manual effort</h3>
+        <p>Automation can absorb part of the volume growth so the team can focus on higher-value work.</p>
+      </article>
+    </div>
+
+    <div class="example-calc">
+      <div class="kicker">Illustrative example</div>
+      <h3>How the hours add up.</h3>
+      <p>If a business processes 300 requests a month and each one requires 8 minutes of manual work:</p>
+      <pre class="calc-line"><span>300 requests × 8 minutes</span><span class="op">=</span><span>2,400 minutes</span><span class="op">=</span><span>40 hours of manual work per month</span></pre>
+      <p>The goal of the diagnostic is to identify how much of that work could realistically be reduced through automation.</p>
+    </div>
+  </div></section>
+
+  <!-- 4b. CASES — typologies, not testimonials (structural blocks, no fake data) -->
+  <section id="casos"><div class="container">
+    <div class="section-head"><div><div class="kicker">Cases</div><h2>We apply the same approach to different processes.</h2></div><p>A few generic examples of the kind of processes we work on. Every case starts from the client's specific situation, not from a fixed pattern.</p></div>
+    <div class="cases-strip">
+      <article class="case-card reveal">
+        <span class="chip">Structure</span>
+        <div class="sector">Retail · E-commerce</div>
+        <p class="problem">Manual order entry, email-based follow-up and reconciling changes between disconnected systems.</p>
+        <p class="intervention"><b>Intervention:</b> integrations + orchestration rules. <b>Typical outcome:</b> reduced manual tasks in the flow.</p>
+      </article>
+      <article class="case-card reveal" data-delay="1">
+        <span class="chip">Structure</span>
+        <div class="sector">Professional services</div>
+        <p class="problem">Heavy load of scheduling, proposal prep and prospect follow-up.</p>
+        <p class="intervention"><b>Intervention:</b> assistants on email and CRM + templates. <b>Typical outcome:</b> faster response times and clearer status.</p>
+      </article>
+      <article class="case-card reveal" data-delay="2">
+        <span class="chip">Structure</span>
+        <div class="sector">Internal operations</div>
+        <p class="problem">Data entry, reconciliations, report generation and recurring administrative work.</p>
+        <p class="intervention"><b>Intervention:</b> flows between systems + AI for classification. <b>Typical outcome:</b> automatic reporting and traceability.</p>
+      </article>
+    </div>
+  </div></section>
+
+  <!-- 5. PEOPLE + AUTOMATION -->
+  <section id="personas-automatizacion"><div class="container">
+    <div class="center">
+      <div class="kicker">People + Automation</div>
+      <h2>We automate tasks. We empower people.</h2>
+      <p class="lead-extra">We don't aim to replace people. We aim to remove the repetitive work that unnecessarily consumes their time.</p>
+    </div>
+
+    <div class="compare-grid">
+      <article class="compare-card person reveal">
+        <div class="kicker">People</div>
+        <h3>Where a person adds the most value</h3>
+        <ul>
+          <li>Making decisions</li>
+          <li>Building relationships</li>
+          <li>Negotiating</li>
+          <li>Resolving exceptions</li>
+          <li>Bringing judgment</li>
+          <li>Handling sensitive situations</li>
+        </ul>
+      </article>
+      <article class="compare-card auto reveal" data-delay="1">
+        <div class="kicker">Automation</div>
+        <h3>Where automation adds the most value</h3>
+        <ul>
+          <li>Moving information</li>
+          <li>Updating records</li>
+          <li>Sending reminders</li>
+          <li>Following up</li>
+          <li>Generating reports</li>
+          <li>Running repetitive tasks</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="phrase-banner">
+      <h3>It is not person versus automation.</h3>
+      <h3 class="accent">It is person + automation.</h3>
+      <p>Each part of the process should be done by whoever can add the most value to it.</p>
+    </div>
+
+    <div class="approval-block reveal">
+      <h3>Some decisions must stay human.</h3>
+      <p>When money, sensitive information, risk, a meaningful exception or low certainty is involved, automation can pause and request review.</p>
+      <div class="approval-flow">
+        <span class="af-step">Process</span>
+        <span class="af-arrow">→</span>
+        <span class="af-step">Automation</span>
+        <span class="af-arrow">→</span>
+        <span class="af-step decision">Is there a meaningful decision?</span>
+        <span class="af-arrow">↓ Yes</span>
+        <span class="af-step human">Human review</span>
+        <span class="af-arrow">→</span>
+        <span class="af-step">Continue</span>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- 6. DIAGNOSTIC -->
+  <section id="diagnostico"><div class="container">
+    <div class="diagnostic-block reveal">
+      <div class="kicker">Automation Diagnostic</div>
+      <h2>Find out what is worth automating.</h2>
+      <p class="diagnostic-lead">We review your processes, identify where you lose time or money and determine which automation could have the biggest impact.</p>
+      <ul class="diagnostic-list">
+        <li><b>Current process.</b> How it works today and where work piles up.</li>
+        <li><b>Time spent.</b> Minutes or hours dedicated to each step.</li>
+        <li><b>Frequency.</b> How often the process runs.</li>
+        <li><b>Errors.</b> Points where it breaks or needs rework.</li>
+        <li><b>Systems involved.</b> Tools, forms and data that participate.</li>
+        <li><b>Outcome we want to improve.</b> The metric that matters to move.</li>
+      </ul>
+      <p class="diagnostic-tail">With that information we estimate the time recoverable, the current cost of the process and the automation priority.</p>
+      <a class="btn btn-primary" href="assessment.html">Request diagnostic</a>
+    </div>
+  </div></section>
+
+  <!-- 7. FAQ -->
+  <section id="faq"><div class="container">
+    <div class="center"><div class="kicker">Frequently asked questions</div><h2>What a prospect probably wants to know.</h2></div>
+    <div class="faq">
+      <div class="faq-item"><button class="faq-q" type="button">Do I need to know what I want to automate?<span>＋</span></button><div class="faq-a">No. We can review your operation and identify where a real opportunity exists.</div></div>
+      <div class="faq-item"><button class="faq-q" type="button">Does everything use AI?<span>＋</span></button><div class="faq-a">No. We use AI only when it adds value. Many automations work better with rules and traditional integrations.</div></div>
+      <div class="faq-item"><button class="faq-q" type="button">Does this replace my team?<span>＋</span></button><div class="faq-a">That is not the goal. We aim to automate repetitive tasks to free up time and increase the team's capacity.</div></div>
+      <div class="faq-item"><button class="faq-q" type="button">Can you connect with my current systems?<span>＋</span></button><div class="faq-a">In many cases, yes. We review the tools you already use and determine the best way to connect them.</div></div>
+    </div>
+  </div></section>
+
   </main>
 
   <footer class="footer"><div class="container footer-grid">
-    <a class="brand" href="/en/" aria-label="DABIA"><img class="brand-logo" src="../assets/dabia-logo.png" alt="DABIA — AI & Business Automation" width="116" /></a>
-    <small>© 2026 DABIA · AI & Business Automation. <a href="/en/privacy.html" class="footer-link">Privacy</a></small>
+    <a class="brand" href="index.html" aria-label="DABIA"><img class="brand-logo" src="../assets/dabia-logo.png" alt="DABIA — AI & Business Automation" width="116" /></a>
+    <small>© 2026 DABIA · AI & Business Automation. <a href="privacy.html" class="footer-link">Privacy</a></small>
   </div></footer>
+
+  <div class="sticky"><a class="btn btn-primary" href="assessment.html">Request diagnostic</a></div>
 
   <script src="../js/i18n.js" defer></script>
   <script src="../js/main.js" defer></script>
