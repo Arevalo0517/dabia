@@ -670,3 +670,19 @@ section[id], .cta-block { scroll-margin-top: 92px; }
   .metric-cell, .metric-cell:nth-child(-n+2) { border-right: 0; border-bottom: 1px solid var(--line); }
   .metric-cell:last-child { border-bottom: 0; }
 }
+
+/* Accessibility: skip-to-main link (V5.5) */
+.skip-link {
+  position: absolute; left: -9999px; top: 8px;
+  padding: 10px 16px;
+  background: linear-gradient(105deg, var(--purple), var(--blue), var(--green));
+  color: #070910;
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 13px;
+  border-radius: 10px;
+  z-index: 100;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(124, 92, 255, .35);
+}
+.skip-link:focus { left: 16px; outline: 2px solid var(--green); outline-offset: 2px; }
