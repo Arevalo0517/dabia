@@ -14,6 +14,7 @@
   <!-- TODO: add assets/apple-touch-icon.png -->
   <!-- TODO: set canonical -->
   <link rel="stylesheet" href="css/styles.css" />
+  <noscript><style>.reveal{opacity:1!important;transform:none!important;transition:none!important;}</style></noscript>
 </head>
 <body id="top">
 
@@ -30,21 +31,21 @@
 
   <header class="page-hero">
     <div class="container">
-      <div class="eyebrow"><span class="dot"></span>Contacto</div>
-      <h1>Cuéntanos qué te gustaría automatizar.</h1>
-      <p>Una conversación inicial sin compromiso. Lo que necesitamos para empezar es entender el proceso que te gustaría mejorar.</p>
+      <div class="eyebrow reveal"><span class="dot"></span>Contacto</div>
+      <h1 class="reveal" data-delay="1">Cuéntanos qué te gustaría automatizar.</h1>
+      <p class="reveal" data-delay="2">Una conversación inicial sin compromiso. Lo que necesitamos para empezar es entender el proceso que te gustaría mejorar.</p>
     </div>
   </header>
 
   <section id="contacto"><div class="container">
     <div class="contact-grid">
-      <div class="contact-copy">
+      <div class="contact-copy reveal">
         <h2>Muéstranos el proceso que más te frustra.</h2>
         <p>No necesitas llegar con una solución. Cuéntanos qué se repite, qué sistema usas y qué se está perdiendo. Nosotros empezamos por ahí.</p>
         <p class="tiny">DABIA · AI & Business Automation. Te contactaremos para revisar el proceso que quieres mejorar.</p>
       </div>
 
-      <form class="form-card" id="leadForm" data-endpoint="/api/contact" novalidate aria-describedby="formNote">
+      <form class="form-card reveal" data-delay="1" id="leadForm" data-endpoint="/api/contact" novalidate aria-describedby="formNote">
         <div class="form-grid">
           <div class="field">
             <label for="lead-name">Nombre</label>
