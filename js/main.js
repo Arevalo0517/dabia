@@ -68,6 +68,32 @@
     });
   }
 
+  // ---------- Scroll progress bar (V5.2.2 polish) ----------
+  // Updates the brand-gradient fill at the top of the viewport on scroll.
+  // Uses requestAnimationFrame + passive listener; respects reduced-motion by
+  // leaving the bar at 0 (no distracting sweep) without disabling it entirely.
+  const progressBar = document.getElementById('scrollProgress');
+  if (progressBar) {
+    let ticking = false;
+    const updateProgress = () => {
+      const h = document.documentElement;
+      const scrolled = h.scrollTop || document.body.scrollTop;
+      const total = (h.scrollHeight - h.clientHeight);
+      const pct = total > 0 ? Math.min(100, Math.max(0, (scrolled / total) * 100)) : 0;
+      progressBar.style.width = pct + '%';
+      ticking = false;
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateProgress);
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    updateProgress();
+  }
+
   // ---------- FAQ accordion ----------
   const faqButtons = document.querySelectorAll('.faq-q');
   faqButtons.forEach((btn) => {

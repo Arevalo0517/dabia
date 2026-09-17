@@ -52,7 +52,6 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background:
@@ -598,6 +597,40 @@ section { padding: var(--section-py) 0; }
   .diagnostic-block:hover {
     transform: none !important;
   }
+}
+
+/* Scroll progress bar (V5.2.2 polish) — fixed brand-gradient indicator at top */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--purple, #7C5CFF) 0%, var(--blue, #63B1FF) 50%, var(--green, #2BD9A8) 100%);
+  z-index: 50;
+  pointer-events: none;
+  transition: width 80ms linear;
+  box-shadow: 0 0 12px rgba(124, 92, 255, 0.4);
+}
+
+/* Smooth in-page anchor jumps (skipped under prefers-reduced-motion via above guard) */
+html { scroll-behavior: smooth; }
+section[id], .cta-block { scroll-margin-top: 92px; }
+
+/* Active nav link (V5.2.2 polish) — tiny indicator under current page */
+.nav-links a[aria-current="page"] {
+  color: var(--text, #f7f9fc);
+  position: relative;
+}
+.nav-links a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: -8px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--purple, #7C5CFF), var(--blue, #63B1FF));
 }
 
 /* Responsive */
