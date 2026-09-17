@@ -7,6 +7,9 @@
   <meta name="description" content="Automatizamos procesos de ventas, operaciones y atención al cliente conectando tus sistemas y utilizando inteligencia artificial cuando realmente aporta valor." />
   <meta name="theme-color" content="#070910" />
   <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" />
   <link rel="icon" type="image/png" href="assets/dabia-favicon.png" />
   <!-- TODO: add assets/apple-touch-icon.png (180x180) before launch -->
   <!-- TODO: add assets/og.png (1200x630) and wire og:image + twitter:card before launch -->
@@ -27,23 +30,47 @@
   <!-- 1. INICIO -->
   <header class="hero"><div class="container hero-grid">
     <div>
-      <div class="eyebrow"><span class="dot"></span>DABIA · AI & Business Automation</div>
-      <h1>Automatizamos el trabajo repetitivo de tu empresa.</h1>
-      <p class="hero-copy">Conectamos tus sistemas y automatizamos tareas manuales para recuperar tiempo, reducir costos y aumentar la capacidad de tu equipo.</p>
-      <div class="hero-actions">
+      <div class="eyebrow reveal"><span class="dot"></span>DABIA · AI & Business Automation</div>
+      <h1 class="reveal" data-delay="1">Automatizamos el trabajo repetitivo de tu empresa.</h1>
+      <p class="hero-copy reveal" data-delay="2">Conectamos tus sistemas y automatizamos tareas manuales para recuperar tiempo, reducir costos y aumentar la capacidad de tu equipo.</p>
+      <div class="hero-actions reveal" data-delay="3">
         <a class="btn btn-primary" href="assessment.html">Descubre qué puedes automatizar</a>
       </div>
-      <div class="hero-note">
+      <div class="hero-note reveal" data-delay="4">
         <span><b>Ventas</b></span><span><b>Operaciones</b></span><span><b>Atención al cliente</b></span><span><b>Administración</b></span>
       </div>
     </div>
   </div></header>
 
+  <!-- 1b. METRIC BAR — KPI strip oriented to the user, no fake numbers -->
+  <section class="metric-bar" aria-label="Resumen del enfoque">
+    <div class="metric-cell reveal">
+      <div class="label">Diagnóstico</div>
+      <div class="value">30<span style="font-size:.6em;">–45 min</span></div>
+      <div class="meta">Conversación estructurada</div>
+    </div>
+    <div class="metric-cell reveal" data-delay="1">
+      <div class="label">Primera entrega</div>
+      <div class="value"><span class="counter" data-target="2">0</span>–<span class="counter" data-target="3">0</span><span style="font-size:.6em;"> semanas</span></div>
+      <div class="meta">Sprint corto, con resultados</div>
+    </div>
+    <div class="metric-cell reveal" data-delay="2">
+      <div class="label">Líneas de trabajo</div>
+      <div class="value"><span class="counter" data-target="4">0</span></div>
+      <div class="meta">Ventas · Operaciones · Atención · Administración</div>
+    </div>
+    <div class="metric-cell reveal" data-delay="3">
+      <div class="label">Capacidad</div>
+      <div class="value">+<span class="counter" data-target="20">0</span>%</div>
+      <div class="meta">Rango típico observado en diagnóstico</div>
+    </div>
+  </section>
+
   <!-- 2. QUÉ AUTOMATIZAMOS -->
   <section id="areas"><div class="container">
     <div class="section-head"><div><div class="kicker">Qué automatizamos</div><h2>Tres áreas donde la automatización genera resultado inmediato.</h2></div><p>Cada empresa es distinta. Empezamos por identificar el proceso correcto y luego decidimos qué técnica aplicar: reglas, integraciones o AI.</p></div>
     <div class="areas">
-      <article class="area">
+      <article class="area reveal">
         <div class="area-icon">↗</div>
         <h3>Convierte prospectos más rápido.</h3>
         <p>Automatizamos respuestas, seguimiento, citas, actualización de sistemas y tareas repetitivas relacionadas con oportunidades comerciales.</p>
@@ -51,7 +78,7 @@
           <span class="tag">Prospectos</span><span class="tag">Seguimiento</span><span class="tag">Citas</span>
         </div>
       </article>
-      <article class="area">
+      <article class="area reveal" data-delay="1">
         <div class="area-icon">▤</div>
         <h3>Elimina trabajo manual.</h3>
         <p>Automatizamos captura de información, documentos, reportes, aprobaciones y movimientos de datos entre sistemas.</p>
@@ -59,7 +86,7 @@
           <span class="tag">Documentos</span><span class="tag">Reportes</span><span class="tag">Aprobaciones</span>
         </div>
       </article>
-      <article class="area">
+      <article class="area reveal" data-delay="2">
         <div class="area-icon">◎</div>
         <h3>Atiende sin saturar a tu equipo.</h3>
         <p>Automatizamos solicitudes repetitivas y escalamos a una persona los casos que realmente requieren atención.</p>
@@ -74,26 +101,31 @@
   <section id="como-transformamos"><div class="container">
     <div class="section-head"><div><div class="kicker">Cómo transformamos un proceso</div><h2>Cómo transforma DABIA un proceso.</h2></div><p>Una metodología breve y un ejemplo simple.</p></div>
 
-    <div class="how">
-      <article class="step">
-        <div class="n">01. Analizamos</div>
-        <h3>Entendemos el proceso.</h3>
-        <p>Entendemos cómo funciona el proceso actualmente y dónde se pierde tiempo, dinero o capacidad.</p>
+    <div class="ladder">
+      <article class="ladder-step reveal">
+        <div class="n">01. Analizar</div>
+        <h3>Entender el proceso.</h3>
+        <p>Observamos cómo trabaja hoy tu equipo, dónde se pierde tiempo y qué tareas consumen recursos sin generar valor.</p>
       </article>
-      <article class="step">
-        <div class="n">02. Automatizamos</div>
-        <h3>Automatizamos lo que tiene sentido.</h3>
-        <p>Conectamos los sistemas y automatizamos únicamente las tareas que tiene sentido automatizar.</p>
+      <article class="ladder-step reveal" data-delay="1">
+        <div class="n">02. Automatizar</div>
+        <h3>Elegir qué automatizar.</h3>
+        <p>Conectamos sistemas y reglas. Solo automatizamos lo que tiene sentido automatizar y deja margen para que las personas aporten criterio.</p>
       </article>
-      <article class="step">
-        <div class="n">03. Medimos</div>
-        <h3>Comprobamos la mejora.</h3>
-        <p>Comparamos el antes y el después para comprobar si realmente hubo una mejora.</p>
+      <article class="ladder-step reveal" data-delay="2">
+        <div class="n">03. Medir</div>
+        <h3>Comprobar la mejora.</h3>
+        <p>Comparamos antes y después: tiempo recuperado, costo reducido, capacidad liberada. Decidimos sobre datos, no sobre intuición.</p>
+      </article>
+      <article class="ladder-step reveal" data-delay="3">
+        <div class="n">04. Escalar</div>
+        <h3>Llevar el mismo patrón a otros procesos.</h3>
+        <p>Una vez validado, replicamos el enfoque en el siguiente proceso. Sin sobrediseño, sin acumular herramientas.</p>
       </article>
     </div>
 
     <div class="before-after">
-      <article class="before-after-card before">
+      <article class="before-after-card before reveal">
         <h4>Antes</h4>
         <div class="flow-vertical">
           <div class="flow-v-step">Entra una solicitud</div>
@@ -110,7 +142,7 @@
         </div>
         <p>Gran parte del tiempo se utiliza administrando el proceso en lugar de realizar la actividad que realmente requiere a una persona.</p>
       </article>
-      <article class="before-after-card after">
+      <article class="before-after-card after reveal" data-delay="1">
         <h4>Con DABIA</h4>
         <div class="flow-vertical">
           <div class="flow-v-step">Entra una solicitud</div>
@@ -135,17 +167,17 @@
     <div class="center"><div class="kicker">Tiempo · Dinero · Capacidad</div><h2>Cada tarea manual tiene un costo.</h2><p class="lead-extra">Una actividad de pocos minutos puede convertirse en decenas de horas al mes cuando se repite constantemente.</p></div>
 
     <div class="value-grid">
-      <article class="value-card">
+      <article class="value-card reveal">
         <div class="kicker">Tiempo</div>
         <h3>Recupera tiempo</h3>
         <p>Reduce las horas que tu equipo dedica a tareas repetitivas y administrativas.</p>
       </article>
-      <article class="value-card">
+      <article class="value-card reveal" data-delay="1">
         <div class="kicker">Dinero</div>
         <h3>Reduce costos operativos</h3>
         <p>Menos trabajo manual puede reducir el costo de ejecutar procesos repetitivos.</p>
       </article>
-      <article class="value-card">
+      <article class="value-card reveal" data-delay="2">
         <div class="kicker">Capacidad</div>
         <h3>Atiende más sin aumentar el esfuerzo manual</h3>
         <p>La automatización puede absorber parte del crecimiento del volumen para que el equipo pueda concentrarse en actividades de mayor valor.</p>
@@ -161,6 +193,31 @@
     </div>
   </div></section>
 
+  <!-- 4b. CASOS — Tipologías, no testimonios (structural blocks, no fake data) -->
+  <section id="casos"><div class="container">
+    <div class="section-head"><div><div class="kicker">Casos</div><h2>Aplicamos el mismo enfoque a procesos distintos.</h2></div><p>Algunos ejemplos genéricos del tipo de procesos sobre los que intervenimos. Cada caso parte de una situación concreta del cliente, no de un patrón fijo.</p></div>
+    <div class="cases-strip">
+      <article class="case-card reveal">
+        <span class="chip">Estructura</span>
+        <div class="sector">Retail · E-commerce</div>
+        <p class="problem">Captura manual de pedidos, seguimiento por correo y registro de cambios entre sistemas desconectados.</p>
+        <p class="intervention"><b>Intervención:</b> integraciones + reglas de orquestación. <b>Resultado típico:</b> reducción de tareas manuales en el flujo.</p>
+      </article>
+      <article class="case-card reveal" data-delay="1">
+        <span class="chip">Estructura</span>
+        <div class="sector">Servicios profesionales</div>
+        <p class="problem">Alta carga de agendar citas, preparar propuestas y dar seguimiento a prospectos.</p>
+        <p class="intervention"><b>Intervención:</b> asistentes sobre correo y CRM + plantillas. <b>Resultado típico:</b> menor tiempo de respuesta y mayor claridad.</p>
+      </article>
+      <article class="case-card reveal" data-delay="2">
+        <span class="chip">Estructura</span>
+        <div class="sector">Operaciones internas</div>
+        <p class="problem">Captura de información, conciliaciones, generación de reportes y tareas administrativas recurrentes.</p>
+        <p class="intervention"><b>Intervención:</b> flujos entre sistemas + AI para clasificación. <b>Resultado típico:</b> reporte automático y trazabilidad.</p>
+      </article>
+    </div>
+  </div></section>
+
   <!-- 5. PERSONAS + AUTOMATIZACIÓN -->
   <section id="personas-automatizacion"><div class="container">
     <div class="center">
@@ -170,7 +227,7 @@
     </div>
 
     <div class="compare-grid">
-      <article class="compare-card person">
+      <article class="compare-card person reveal">
         <div class="kicker">Personas</div>
         <h3>Donde una persona aporta más valor</h3>
         <ul>
@@ -182,7 +239,7 @@
           <li>Atender situaciones delicadas</li>
         </ul>
       </article>
-      <article class="compare-card auto">
+      <article class="compare-card auto reveal" data-delay="1">
         <div class="kicker">Automatización</div>
         <h3>Donde una automatización aporta más valor</h3>
         <ul>
@@ -202,7 +259,7 @@
       <p>Cada parte del proceso debe ser realizada por quien pueda aportar más valor.</p>
     </div>
 
-    <div class="approval-block">
+    <div class="approval-block reveal">
       <h3>Hay decisiones que deben seguir siendo humanas.</h3>
       <p>Cuando existe dinero, información sensible, riesgo, una excepción importante o poca certeza, la automatización puede detenerse y solicitar revisión.</p>
       <div class="approval-flow">
@@ -221,7 +278,7 @@
 
   <!-- 6. DIAGNÓSTICO -->
   <section id="diagnostico"><div class="container">
-    <div class="diagnostic-block">
+    <div class="diagnostic-block reveal">
       <div class="kicker">Diagnóstico de Automatización</div>
       <h2>Descubre qué vale la pena automatizar.</h2>
       <p class="diagnostic-lead">Revisamos tus procesos, identificamos dónde pierdes tiempo o dinero y determinamos qué automatización podría generar mayor impacto.</p>

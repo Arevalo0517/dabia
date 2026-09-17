@@ -1,9 +1,72 @@
 /* DABIA — Shared scripts
    Vanilla JS, defensive: only attaches handlers if elements exist on the page.
-   Compatible with V5 homepage, contact form, and future pages. */
+   V5.2 adds IntersectionObserver entrance reveal + animated number counter. */
 
 (function () {
   'use strict';
+
+  // ---------- Reveal on scroll (entrance animation) ----------
+  // Toggles .is-in on any .reveal element when it enters the viewport.
+  // Reduced-motion is handled in CSS; if prefers-reduced-motion, skip the observer
+  // and apply .is-in immediately so nothing stays hidden.
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealTargets = document.querySelectorAll('.reveal');
+  if (revealTargets.length) {
+    if (prefersReduced || typeof IntersectionObserver === 'undefined') {
+      revealTargets.forEach((el) => el.classList.add('is-in'));
+    } else {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-in');
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+      );
+      revealTargets.forEach((el) => io.observe(el));
+    }
+  }
+
+  // ---------- Animated number counter (for .counter[data-target]) ----------
+  // Counts from 0 to data-target on first viewport entry. No fake data:
+  // counters are explicitly opt-in via data-target; sections without it stay still.
+  const counters = document.querySelectorAll('.counter[data-target]');
+  if (counters.length && !prefersReduced && typeof IntersectionObserver !== 'undefined') {
+    const animate = (el) => {
+      const target = Number(el.dataset.target) || 0;
+      const dur = Number(el.dataset.duration) || 1400;
+      if (target <= 0) { el.textContent = '0'; return; }
+      const start = performance.now();
+      const tick = (now) => {
+        const t = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.round(target * eased).toLocaleString();
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const cio = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animate(entry.target);
+            cio.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    counters.forEach((el) => cio.observe(el));
+  } else {
+    // Fallback: if reduced motion or no observer, show final target immediately.
+    counters.forEach((el) => {
+      const t = Number(el.dataset.target);
+      el.textContent = t ? t.toLocaleString() : el.textContent;
+    });
+  }
 
   // ---------- FAQ accordion ----------
   const faqButtons = document.querySelectorAll('.faq-q');
