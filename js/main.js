@@ -5,6 +5,28 @@
 (function () {
   'use strict';
 
+  // ---------- Localized strings for the contact form ----------
+  // Driven by the page's <html lang>. Mirrors the api/contact.js RESP_MESSAGES
+  // pair so server and client agree on the user-visible copy.
+  const docLang = (document.documentElement.lang || 'en').toLowerCase();
+  const STRINGS = {
+    en: {
+      sending: 'Sending…',
+      required: 'Please complete the required fields.',
+      invalid: 'Please review your information and try again.',
+      temporary: 'We could not send your request right now. Please try again.',
+      okReset: '✓ Thank you. We received your information successfully.',
+    },
+    es: {
+      sending: 'Enviando…',
+      required: 'Completa los campos obligatorios.',
+      invalid: 'Revisa la información e inténtalo nuevamente.',
+      temporary: 'No pudimos enviar tu solicitud en este momento. Inténtalo nuevamente.',
+      okReset: '✓ Gracias. Recibimos tu información correctamente.',
+    },
+  };
+  const T = STRINGS[docLang.startsWith('es') ? 'es' : 'en'];
+
   // ---------- Reveal on scroll (entrance animation) ----------
   // Toggles .is-in on any .reveal element when it enters the viewport.
   // Reduced-motion is handled in CSS; if prefers-reduced-motion, skip the observer
@@ -125,14 +147,14 @@
       if (submitBtn) {
         submitBtn.disabled = busy;
         submitBtn.setAttribute('aria-busy', busy ? 'true' : 'false');
-        submitBtn.textContent = busy ? 'Enviando…' : originalBtnText;
+        submitBtn.textContent = busy ? T.sending : originalBtnText;
       }
     };
 
     const resetMessages = () => {
       if (successBox) {
         successBox.classList.remove('show');
-        successBox.textContent = '✓ Gracias. Recibimos tu información correctamente.';
+        successBox.textContent = T.okReset;
       }
       if (errorBox) {
         errorBox.classList.remove('show');
@@ -178,7 +200,7 @@
         valid = false;
       }
       if (!valid) {
-        showError('Completa los campos obligatorios.');
+        showError(T.required);
         return;
       }
 
@@ -205,12 +227,12 @@
           leadForm.reset();
           clearFieldErrors();
         } else if (response.status === 400) {
-          showError('Revisa la información e inténtalo nuevamente.');
+          showError(T.invalid);
         } else {
-          showError('No pudimos enviar tu solicitud en este momento. Inténtalo nuevamente.');
+          showError(T.temporary);
         }
       } catch (_err) {
-        showError('No pudimos enviar tu solicitud en este momento. Inténtalo nuevamente.');
+        showError(T.temporary);
       } finally {
         setBusy(false);
       }

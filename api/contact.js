@@ -29,11 +29,25 @@ const LIMITS = {
 const TIMEOUT_MS = 8000;
 
 const RESP_MESSAGES = {
-  ok: 'Gracias. Recibimos tu información correctamente.',
-  invalid: 'Revisa la información e inténtalo nuevamente.',
-  temporary: 'No pudimos enviar tu solicitud en este momento. Inténtalo nuevamente.',
-  method: 'Método no permitido.',
+  es: {
+    ok: 'Gracias. Recibimos tu información correctamente.',
+    invalid: 'Revisa la información e inténtalo nuevamente.',
+    temporary: 'No pudimos enviar tu solicitud en este momento. Inténtalo nuevamente.',
+    method: 'Método no permitido.',
+  },
+  en: {
+    ok: 'Thank you. We received your information successfully.',
+    invalid: 'Please review your information and try again.',
+    temporary: 'We could not send your request right now. Please try again.',
+    method: 'Method not allowed.',
+  },
 };
+
+function pickLang(req) {
+  const raw = (req && (req.headers['accept-language'] || req.headers['Accept-Language'])) || '';
+  const first = String(raw).split(',')[0].trim().toLowerCase();
+  return first.startsWith('en') ? 'en' : 'es';
+}
 
 // ---------- Helpers de validacion (exportados para testing local) ----------
 
@@ -137,9 +151,11 @@ module.exports = async function handler(req, res) {
   // Sin cache en ningun caso.
   res.setHeader('Cache-Control', 'no-store');
 
+  const messages = RESP_MESSAGES[pickLang(req)];
+
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
-    res.status(405).json({ ok: false, mensaje: RESP_MESSAGES.method });
+    res.status(405).json({ ok: false, mensaje: messages.method });
     return;
   }
 
@@ -150,7 +166,7 @@ module.exports = async function handler(req, res) {
     try {
       body = JSON.parse(body);
     } catch (_e) {
-      res.status(400).json({ ok: false, mensaje: RESP_MESSAGES.invalid });
+      res.status(400).json({ ok: false, mensaje: messages.invalid });
       return;
     }
   }
@@ -160,14 +176,14 @@ module.exports = async function handler(req, res) {
     // Log tecnico sin PII. Solo告诉我们 que la peticion fallo la
     // validacion; no que campo ni que valor.
     console.warn('[contact] validation_failed');
-    res.status(400).json({ ok: false, mensaje: RESP_MESSAGES.invalid });
+    res.status(400).json({ ok: false, mensaje: messages.invalid });
     return;
   }
 
   const webhookUrl = process.env.N8N_LEAD_WEBHOOK_URL;
   if (!webhookUrl || typeof webhookUrl !== 'string') {
     console.error('[contact] webhook_not_configured');
-    res.status(500).json({ ok: false, mensaje: RESP_MESSAGES.temporary });
+    res.status(500).json({ ok: false, mensaje: messages.temporary });
     return;
   }
 
@@ -176,15 +192,17 @@ module.exports = async function handler(req, res) {
 
   if (!forward.ok) {
     console.error('[contact] forward_failed', JSON.stringify({ reason: forward.reason }));
-    res.status(500).json({ ok: false, mensaje: RESP_MESSAGES.temporary });
+    res.status(500).json({ ok: false, mensaje: messages.temporary });
     return;
   }
 
-  res.status(200).json({ ok: true, mensaje: RESP_MESSAGES.ok });
+  res.status(200).json({ ok: true, mensaje: messages.ok });
 };
 
 // ---------- Exports para testing (no expuestos en el bundle de Vercel) ----------
 module.exports.validateLead = validateLead;
 module.exports.buildPayload = buildPayload;
 module.exports.forwardToN8N = forwardToN8N;
+module.exports.pickLang = pickLang;
 module.exports.LIMITS = LIMITS;
+module.exports.RESP_MESSAGES = RESP_MESSAGES;
